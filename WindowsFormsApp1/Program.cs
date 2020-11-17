@@ -29,7 +29,7 @@ namespace WindowsFormsApp1
                 .Select(p => new PersonProjection { Firstname = p.First, LastName = p.Last})
                 .OrderBy(p => p.LastName)
                 .ThenBy(p => p.LastName)
-                .GroupBy();
+               ;// .GroupBy();
             
             var s = firstNameLastName.First().ToString();
 
