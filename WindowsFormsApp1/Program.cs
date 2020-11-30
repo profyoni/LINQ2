@@ -19,9 +19,33 @@ namespace WindowsFormsApp1
        // [STAThread]
         static void Main()
         {
+            // LINQ to objects (in memory) - all LINQ executed in C# runtime on your CPU, locally, very fast (no network latency)
+            // LINQ to entities (= tables in a database) - LINQ query is converted into SQL and sent to the database, and executed on database
+            //   Pro - query is run on SQL Server (RDBMS) which is optimized for queries,
+            //         data resides in db  and query run in same DB,
+            //         only results sent to C# program
+            //   Con - some ops cannot be converted easily or at all to SQL (if you call a C# function it is c# , not SQL)
+            //         SQL may be very unoptimized, might be O(n^2) where it should be O(n)
+            //         each request may suffer latency accessing database especially with
+            //              enumerables (with yield/deferred execution) that require a round trip to db for each record returned
+            //     Best used for simple queries and for getting started
+            //     for complex queries after Proof of Concept optimize as needed (SQL functions, procedures, LINQ optimizations)
 
-            // Specify the data source.
-            var scores = Enumerable.Range(1, 100_000_000);//new int[] { 97, 92, 81, 60 };
+            // Early optimization is the root of all evil (Donald Knuthe)
+
+            // LINQ to XML (xml representation of data, JSON has to a great extend replaced XML)
+               // XML / JSON will be deserialized into an object during a web service API call e.g. Azure Language Service
+        
+               // Specify the data source.
+
+               // MoreLINQ
+
+               // letter frequency histogram
+
+
+
+
+            var scores = Enumerable.Range(1, 100_000_000); // new int[] { 97, 92, 81, 60 };
 
             var people = scores.Select(id => GetPersonById(id));
 
